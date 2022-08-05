@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+  margin: 1em;
+}
+
+button{
+  margin: 0 1em;
+  padding: 0 3em;
+  float: right;
 }
 
 .App-logo {
