@@ -16,7 +16,7 @@ function App() {
 
     <div className="App">
       {units.map((unit)=>(
-        (<Unit code={unit.code} title={unit.title}></Unit>)
+        (<Unit code={unit.code} title={unit.title} offerings={unit.offering}></Unit>)
       ))}
       
     </div>
