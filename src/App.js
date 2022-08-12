@@ -1,20 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
 import Unit from './components/Unit';
+import { useEffect, useState } from 'react';
+import UnitForm from './components/UnitForm';
+import axios from "axios"
 
-const units = [
-  {code: 'COMP1010', title:'Fundamentals of Computer Science', offering: ['S1', 'S2']},
-  {code: 'COMP1750', title:'Introduction to Business Information Systems', offering: ['S1']},
-  {code: 'COMP2110', title:'Web Technology', offering: ['S1', 'S2']},
-  {code: 'COMP2750', title:'Applications Modelling and Development', offering: ['S1']},
-  {code: 'MMCC2045', title:'Interactive Web Design', offering: ['S2']},
-  {code: 'COMP3120', title:'Advanced Web Development', offering: ['S2']},
-  {code: 'COMP3130', title:'Mobile Application Development', offering: ['S1']}
-]
+
 function App() {
+  const [units, setUnits] = useState([])
+  const addUnit = (unit)=>{
+    axios.post('http://localhost:3001/units', unit).then(() => console.log('Unit added'))
+    setUnits([...units, unit])
+  }
+  const getUnits = () =>{
+    axios.get('http://localhost:3001/units')
+    .then((response) => setUnits(response.data))
+    .catch(error => console.log(error))
+  }
+  useEffect(() => {
+    getUnits();
+  }, []);
   return (
 
     <div className="App">
+      <UnitForm addUnit = {addUnit}
+      ></UnitForm>
       {units.map((unit)=>(
         (<Unit code={unit.code} title={unit.title} offerings={unit.offering}></Unit>)
       ))}
