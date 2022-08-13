@@ -25,9 +25,16 @@ function App() {
     <div className="App">
       <UnitForm addUnit = {addUnit}
       ></UnitForm>
+ 
       {units.map((unit)=>(
-        (<Unit code={unit.code} title={unit.title} offerings={unit.offering}></Unit>)
-      ))}
+          <Unit key = {unit.id} code={unit.code} title={unit.title} offerings={unit.offering}></Unit>
+        ))}
+
+        
+
+      
+  
+      
       
     </div>
   );
